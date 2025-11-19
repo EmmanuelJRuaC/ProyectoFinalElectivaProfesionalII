@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mini Marketplace - Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            background: #f5f6fa;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #34495e;
+            margin-top: 40px;
+        }
+
+        .card-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            flex: 1 1 200px;
+        }
+
+        .card strong {
+            font-size: 18px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #34495e;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #ecf0f1;
+        }
+
+        tr:hover {
+            background: #dcdde1;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            background: #3498db;
+            padding: 10px 16px;
+            color: white;
+            border-radius: 6px;
+            transition: .2s;
+        }
+
+        nav a:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1> <i class="fa-solid fa-chart-line"></i>
+        Marketplace - Dashboard
+    </h1>
+
+    <h2>Navegación</h2>
+
+    <nav>
+        <ul>
+            <li><a href="/categorias/"><i class="fa-solid fa-folder"></i> Categorías</a></li>
+            <li><a href="/productos/"><i class="fa-solid fa-box"></i> Productos</a></li>
+            <li><a href="/clientes/"><i class="fa-solid fa-user"></i> Clientes</a></li>
+            <li><a href="/pedidos/"><i class="fa-solid fa-cart-shopping"></i> Pedidos</a></li>
+        </ul>
+    </nav>
+
+    <h2>Resumen General</h2>
+
+    <div class="card-container">
+        <div class="card">
+             <i class="fa-solid fa-layer-group"></i>
+            <strong>Total Categorías:</strong> {{ total_categorias }}
+        </div>
+        <div class="card">
+             <i class="fa-solid fa-box"></i>
+            <strong>Total Productos:</strong> {{ total_productos }}
+        </div>
+        <div class="card">
+             <i class="fa-solid fa-users"></i>
+            <strong>Total Clientes:</strong> {{ total_clientes }}
+        </div>
+        <div class="card">
+             <i class="fa-solid fa-cart-shopping"></i>
+            <strong>Total Pedidos:</strong> {{ total_pedidos }}
+        </div>
+    </div>
+
+    <h2>Últimos Productos</h2>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Categoría</th>
+        </tr>
+
+        {% for p in ultimos_productos %}
+        <tr>
+            <td>{{ p.id }}</td>
+            <td>{{ p.nombre }}</td>
+            <td>{{ p.precio }}</td>
+            <td>{{ p.categoria.nombre }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Últimos Pedidos</h2>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Total</th>
+        </tr>
+
+        {% for ped in ultimos_pedidos %}
+        <tr>
+            <td>{{ ped.id }}</td>
+            <td>{{ ped.cliente.nombre }}</td>
+            <td>{{ ped.producto.nombre }}</td>
+            <td>{{ ped.cantidad }}</td>
+            <td>{{ ped.total }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+
+</body>
+
+</html>

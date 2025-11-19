@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario Categoría</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f6fa;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        form {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        form p {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        input,
+        select,
+        textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #3498db;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        button:hover {
+            background: #21618c;
+        }
+
+        .btn-volver {
+            display: block;
+            margin: 20px auto 0;
+            width: 200px;
+            text-align: center;
+            background: #7f8c8d;
+            color: white;
+            padding: 10px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: .2s;
+        }
+
+        .btn-volver:hover {
+            background: #636e72;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1><i class="fa-solid fa-folder-plus"></i> Formulario Categoría</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit">
+            <i class="fa-solid fa-save"></i> Guardar
+        </button>
+    </form>
+
+    <a class="btn-volver" href="{% url 'listar_categorias' %}">
+        <i class="fa-solid fa-arrow-left"></i> Volver al listado
+    </a>
+
+</body>
+
+</html>

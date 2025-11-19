@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Categorías</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f6fa;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        .btn-crear {
+            display: inline-block;
+            padding: 10px 18px;
+            background: #27ae60;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: .2s;
+        }
+
+        .btn-crear:hover {
+            background: #1e8449;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            margin-top: 20px;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #34495e;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #ecf0f1;
+        }
+
+        tr:hover {
+            background: #dcdde1;
+        }
+
+        .acciones a {
+            padding: 6px 12px;
+            margin-right: 6px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+        }
+
+        .btn-editar {
+            background: #2980b9;
+        }
+
+        .btn-editar:hover {
+            background: #21618c;
+        }
+
+        .btn-eliminar {
+            background: #c0392b;
+        }
+
+        .btn-eliminar:hover {
+            background: #922b21;
+        }
+
+        .btn-volver {
+            display: inline-block;
+            margin: 20px auto 0;
+            width: 60px;
+            text-align: center;
+            background: #7f8c8d;
+            color: white;
+            padding: 10px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: .2s;
+        }
+
+        .btn-volver:hover {
+            background: #636e72;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            background: #3498db;
+            padding: 10px 16px;
+            color: white;
+            border-radius: 6px;
+            transition: .2s;
+        }
+
+        nav a:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>
+        <i class="fa-solid fa-layer-group"></i>
+        Listado de Categorías
+    </h1>
+
+    <a class="btn-volver" href="{% url 'index' %}">
+        <i class="fa-solid fa-house"></i> Inicio
+    </a>
+
+    <nav>
+        <ul>
+            <li><a href="/productos/"><i class="fa-solid fa-box"></i> Productos</a></li>
+            <li><a href="/clientes/"><i class="fa-solid fa-user"></i> Clientes</a></li>
+            <li><a href="/pedidos/"><i class="fa-solid fa-cart-shopping"></i> Pedidos</a></li>
+        </ul>
+    </nav>
+
+    <a class="btn-crear" href="{% url 'crear_categoria' %}">
+        <i class="fa-solid fa-plus"></i>
+        Crear nueva categoría
+    </a>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Acciones</th>
+        </tr>
+
+        {% for c in categorias %}
+        <tr>
+            <td>{{ c.id }}</td>
+            <td>{{ c.nombre }}</td>
+            <td class="acciones">
+                <a class="btn-editar" href="{% url 'editar_categoria' c.id %}">
+                    <i class="fa-solid fa-pen"></i> Editar
+                </a>
+                <a class="btn-eliminar" href="{% url 'eliminar_categoria' c.id %}">
+                    <i class="fa-solid fa-trash"></i> Eliminar
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+
+</html>

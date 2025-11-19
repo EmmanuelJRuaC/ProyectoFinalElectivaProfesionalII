@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario Pedido</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background: white;
+            max-width: 450px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        form p {
+            margin-bottom: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #17a2b8;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        button:hover {
+            background: #138496;
+        }
+
+        .btn-volver {
+            display: block;
+            margin: 20px auto 0;
+            width: 200px;
+            text-align: center;
+            background: #7f8c8d;
+            color: white;
+            padding: 10px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: .2s;
+        }
+
+        .btn-volver:hover {
+            background: #636e72;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1><i class="fa-solid fa-cart-plus"></i> Formulario Pedido</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">
+            <i class="fa-solid fa-floppy-disk"></i> Guardar
+        </button>
+    </form>
+
+    <a class="btn-volver" href="{% url 'listar_pedidos' %}">
+        <i class="fa-solid fa-arrow-left"></i> Volver al listado
+    </a>
+</body>
+
+</html>
